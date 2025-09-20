@@ -1,15 +1,217 @@
-// Guarda el texto original para poder restaurarlo
-nombre.setAttribute('data-original-text', nombre.textContent.trim());
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Distribución de Mesas</title>
 
-// Al buscar, si hay coincidencia, resalta solo la parte que coincide sin cambiar el texto original
-const original = nombre.getAttribute('data-original-text');
-nombre.textContent = original; // restaurar texto sin modificaciones
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-if (busqueda !== '') {
-  const normalizado = normalizarTexto(original);
-  if (normalizado.includes(busqueda)) {
-    const regex = new RegExp(`(${busqueda})`, 'gi');
-    const resaltado = original.replace(regex, '<span class="highlight">$1</span>');
-    nombre.innerHTML = resaltado; // solo aquí el texto se vuelve HTML con el resaltado
-  }
-}
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@300;400;700&display=swap" rel="stylesheet" />
+
+  <!-- Estilos personalizados -->
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .titulo-evento {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+    }
+
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+  <!-- Encabezado -->
+  <header class="container py-5 text-center">
+    <h1 class="display-4 titulo-evento">Bienvenidos al cumpleaños de Juan David</h1>
+    <p class="lead">Verifica tu mesa ingresando tu nombre</p>
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-6 mt-4">
+        <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="Por favor busca tu nombre aquí..." />
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenedor de mesas -->
+  <main class="container py-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="mesasContainer">
+
+      <!-- MESA 1 -->
+      <div class="col mesa-card"
+           data-guests="juan david delgado mary luz soto angela alzate gustavo soto diego fernando ramos andres felipe ramos dylan ramos angie vera paola ciro erika soto">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title mesa-titulo">Mesa 1</h5>
+            <ul class="list-unstyled invitados-list">
+              <li>Juan David Delgado</li>
+              <li>Mary luz soto</li>
+              <li>Angela Alzate</li>
+              <li>Gustavo soto</li>
+              <li>Diego Fernando Ramos</li>
+              <li>Andres Felipe Ramos</li>
+              <li>Dylan Ramos</li>
+              <li>Angie Vera</li>
+              <li>Paola Ciro</li>
+              <li>Erika Soto</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESA 2 -->
+      <div class="col mesa-card"
+           data-guests="john alex duque santiago ramirez angela andrea suarez valentina arango martin buena vista edilma orrego aldalberto lopez madonna lopez orlando soto fassury soto">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title mesa-titulo">Mesa 2</h5>
+            <ul class="list-unstyled invitados-list">
+              <li>John Alex Duque</li>
+              <li>Santiago Ramirez</li>
+              <li>Angela Andrea Suarez</li>
+              <li>Valentina Arango</li>
+              <li>Martin Buena Vista</li>
+              <li>Edilma Orrego</li>
+              <li>Aldalberto Lopez</li>
+              <li>Madonna Lopez</li>
+              <li>Orlando Soto</li>
+              <li>Fassury Soto</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESA 3 -->
+      <div class="col mesa-card"
+           data-guests="camilo andres mejia paola castro hernan gomez liliana zapata juan camilo zapata natalia quintero laura morales felipe gutierrez diana salazar ricardo londoño">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title mesa-titulo">Mesa 3</h5>
+            <ul class="list-unstyled invitados-list">
+              <li>Camilo Andres Mejia</li>
+              <li>Paola Castro</li>
+              <li>Hernan Gomez</li>
+              <li>Liliana Zapata</li>
+              <li>Juan Camilo Zapata</li>
+              <li>Natalia Quintero</li>
+              <li>Laura Morales</li>
+              <li>Felipe Gutierrez</li>
+              <li>Diana Salazar</li>
+              <li>Ricardo Londoño</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESA 4 -->
+      <div class="col mesa-card"
+           data-guests="sebastian lopez andrea montoya juan sebastian salazar maria fernanda giraldo esteban cardona veronica lopez manuel rojas alejandra ruiz sergio arenas catalina toro">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title mesa-titulo">Mesa 4</h5>
+            <ul class="list-unstyled invitados-list">
+              <li>Sebastian Lopez</li>
+              <li>Andrea Montoya</li>
+              <li>Juan Sebastian Salazar</li>
+              <li>Maria Fernanda Giraldo</li>
+              <li>Esteban Cardona</li>
+              <li>Veronica Lopez</li>
+              <li>Manuel Rojas</li>
+              <li>Alejandra Ruiz</li>
+              <li>Sergio Arenas</li>
+              <li>Catalina Toro</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- MESA 5 -->
+      <div class="col mesa-card"
+           data-guests="julian restrepo diana carolina acevedo david muñoz melissa giraldo carlos andres toro juliana correa miguel angel perez karen sierra luisa fernanda agudelo federico navarro">
+        <div class="card h-100">
+          <div class="card-body text-center">
+            <h5 class="card-title mesa-titulo">Mesa 5</h5>
+            <ul class="list-unstyled invitados-list">
+              <li>Julian Restrepo</li>
+              <li>Diana Carolina Acevedo</li>
+              <li>David Muñoz</li>
+              <li>Melissa Giraldo</li>
+              <li>Carlos Andres Toro</li>
+              <li>Juliana Correa</li>
+              <li>Miguel Angel Perez</li>
+              <li>Karen Sierra</li>
+              <li>Luisa Fernanda Agudelo</li>
+              <li>Federico Navarro</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="container text-center py-4">
+    <p class="text-muted small">© Juandaviddelgado | 2025. All Rights Reserved Juandaviddelgado.</p>
+  </footer>
+
+  <!-- Script búsqueda -->
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const mesas = document.querySelectorAll('.mesa-card');
+
+    // Guardar texto original
+    mesas.forEach(mesa => {
+      const nombres = mesa.querySelectorAll('li');
+      nombres.forEach(nombre => {
+        nombre.setAttribute('data-original-text', nombre.textContent.trim());
+      });
+    });
+
+    function normalizarTexto(texto) {
+      return texto
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '') // quita tildes
+        .trim();
+    }
+
+    searchInput.addEventListener('input', () => {
+      const busqueda = normalizarTexto(searchInput.value);
+
+      mesas.forEach(mesa => {
+        const invitados = normalizarTexto(mesa.getAttribute('data-guests'));
+        const nombres = mesa.querySelectorAll('li');
+
+        // Mostrar u ocultar mesa
+        mesa.style.display = (invitados.includes(busqueda) || busqueda === '') ? '' : 'none';
+
+        // Resaltar coincidencias
+        nombres.forEach(nombre => {
+          const original = nombre.getAttribute('data-original-text');
+          nombre.textContent = original;
+
+          if (busqueda !== '') {
+            const normalizado = normalizarTexto(original);
+            if (normalizado.includes(busqueda)) {
+              const regex = new RegExp(`(${busqueda})`, 'gi');
+              const resaltado = original.replace(regex, '<span class="highlight">$1</span>');
+              nombre.innerHTML = resaltado;
+            }
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
